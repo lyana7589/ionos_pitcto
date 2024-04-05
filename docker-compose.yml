@@ -1,0 +1,57 @@
+version: "3.9"
+services:
+  mysqldb:
+    build:
+      context: ../baseDonnee
+      dockerfile: Dockerfile
+    container_name: mysqldb1
+    hostname: mysqldb
+    restart: always
+    ports:
+      - "3308:3306"
+    #volumes:
+     # - mysql-data:/var/lib/mysql
+    networks:
+      app_net:
+        ipv4_address: "172.16.0.2"
+  pictopro1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pictopro1
+    hostname: pictopro1
+    restart: always
+    ports:
+      - "8082:8080"
+    depends_on:
+      - mysqldb
+    networks:
+      app_net:
+        ipv4_address: 172.16.0.3
+    extra_hosts:
+      - "mysqldb:172.16.0.2" 
+mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"  # SMTP server
+      - "8025:8025"  # Web interface
+      
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.0.0/24"
+volumes:
+  my-db:
+
+#lancer le docker compose
+#docker compose up
+#log
+#docker inspect --format "{{json .State.Health }}" customers-service | jq
+#supprimer docker compose
+#docker compose rm
+#supprimer toutes les images
+#docker rmi $(docker images -a -q) -f
+#arrêter les container
+#docker rm $(docker images -a -q) -f
