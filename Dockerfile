@@ -4,7 +4,8 @@ From openjdk:19
 # creer et acceder au dossier app
 WORKDIR /app
 # copier le fichier .war dans le dossier /app
-COPY target/*.war app.war
+ COPY target/*.war app.war
+# COPY target/pictopro-0.0.4-SNAPSHOT.war app.war
 # executer la commande java -jar /app/app.jar
 RUN echo $(ls)
 RUN echo $(pwd)

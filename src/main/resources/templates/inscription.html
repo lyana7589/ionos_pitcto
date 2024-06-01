@@ -1,84 +1,93 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="eng">
+
 <head>
     <meta charset="utf-8">
     <title>Inscription</title>
-    <link rel="stylesheet" href="/css/inscription.css"/>
-    <link rel="icon" type="favicon" th:href="@{/images/Logos/Logo.png}"/>
+    <link rel="stylesheet" href="/css/inscription.css" />
+    <link rel="icon" type="favicon" th:href="@{/images/Logos/Logo.png}" />
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
+
 <body>
-<div class="main">
-    <form th:action="@{/registration}" method="post" th:object="${userForm}">
+    <div class="main">
+        <form th:action="@{/registration}" method="post" th:object="${userForm}">
 
-        <div class="container a-container" id="a-container">
-            <div class="switch__container">
-                <h2 class="form_title title2">Coordonnées personnelles</h2>
-                <div>
-                    <input class="form__input" type="text" th:field="*{nom}" placeholder="Nom*" required><br>
-                    <span th:class="has-error" th:errors="*{nom}"></span>
-                </div>
-                <div>
-                    <input class="form__input" type="text" th:field="*{prenom}" placeholder="Prénom*" required><br>
-                    <span th:class="has-error" th:errors="*{prenom}"></span>
-                </div>
-                <div>
-                    <input class="form__input" type="text" th:field="*{dateNaissance}" onfocus="(this.type='date')"
-                           placeholder="Date de naissance*" required><br>
-                    <span th:class="has-error" th:errors="*{dateNaissance}"></span>
-                </div>
-                <div>
-                    <input class="form__input" type="text" th:field="*{service}" placeholder="Service/Département médical*" required><br>
-                    <span th:class="has-error" th:errors="*{service}"></span>
-                </div>
-                <div>
-                    <input class="form__input" type="email" th:field="*{email}" placeholder="Email*" required><br>
-                    <span th:class="has-error" th:errors="*{email}"></span>
-                </div>
-                <div>
-                    <input class="form__input" type="text" th:field="*{telephone}" placeholder="Numéro de téléphone*"
-                           required><br>
-                    <span th:class="has-error" th:errors="*{telephone}"></span>
-                </div>
-                <p>(*champ requis)</p><br>
-                <div class="g-recaptcha" data-sitekey="6LerQO0mAAAAAJ8IsBtySu7S408uI1TNAUcV1j02"></div>
-                <p th:class="has-error" th:text="${message}"></p>
-            </div>
-        </div>
-        <div class="switch" id="connexion switch-cnt">
-            <div class="switch__circle"></div>
-            <div class="switch__circle switch__circle--t"></div>
-            <div class="switch__container" id="switch-c1">
-                <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="50px">
-                <h2 class="form_title title">Identifiants</h2>
-                <div class="pss">
-                    <input class="form__input" type="text" th:field="*{username}" placeholder="Pseudonyme*" required autofocus><br>
-                    <span th:class="has-error" th:errors="*{username}"></span>
-                </div>
-
-                <div>
-                    <input class="form__input" type="password" th:field="*{password}" placeholder="Mot de Passe*" required><br>
-                    <span th:class="has-error" th:errors="*{password}"></span>
-                </div>
-                <div>
-                    <input class="form__input" type="password" th:field="*{confirmPassword}" placeholder="Confirmer le Mot de Passe*" required><br>
-                    <span th:class="has-error" th:errors="*{confirmPassword}"></span>
-                    <p class="switch__description description">
-                        Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un caractère
-                        spécial et comporter au moins 8 caractères.
-                    </p>
-                </div>
-                <div>
-                    <a th:href="@{/}" class="form__link">Déjà inscrit ?</a>
-                </div>
-                <div>
-                    <button type="submit" name="ok" id="logIn" class="switch__button button switch-btn a-button">S'inscrire
-                    </button>
+            <div class="container a-container" id="a-container">
+                <div class="switch__container">
+                    <h2 class="form_title title2">Coordonnées personnelless</h2>
+                    <div>
+                        <input class="form__input" type="text" th:field="*{nom}" placeholder="Nom*" required><br>
+                        <span th:class="has-error" th:errors="*{nom}"></span>
+                    </div>
+                    <div>
+                        <input class="form__input" type="text" th:field="*{prenom}" placeholder="Prénom*" required><br>
+                        <span th:class="has-error" th:errors="*{prenom}"></span>
+                    </div>
+                    <div>
+                        <input class="form__input" type="text" th:field="*{dateNaissance}" onfocus="(this.type='date')"
+                            placeholder="Date de naissance*" required><br>
+                        <span th:class="has-error" th:errors="*{dateNaissance}"></span>
+                    </div>
+                    <div>
+                        <input class="form__input" type="text" th:field="*{service}"
+                            placeholder="Service/Département médical*" required><br>
+                        <span th:class="has-error" th:errors="*{service}"></span>
+                    </div>
+                    <div>
+                        <input class="form__input" type="email" th:field="*{email}" placeholder="Email*" required><br>
+                        <span th:class="has-error" th:errors="*{email}"></span>
+                    </div>
+                    <div>
+                        <input class="form__input" type="text" th:field="*{telephone}"
+                            placeholder="Numéro de téléphone*" required><br>
+                        <span th:class="has-error" th:errors="*{telephone}"></span>
+                    </div>
+                    <p>(*champ requis)</p><br>
+                    <div class="g-recaptcha" data-sitekey="6LdDIe0pAAAAAIKd9tjbUYVld9y7HZOxuyEjN__M"></div>
+                    <p th:class="has-error" th:text="${message}"></p>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+            <div class="switch" id="connexion switch-cnt">
+                <div class="switch__circle"></div>
+                <div class="switch__circle switch__circle--t"></div>
+                <div class="switch__container" id="switch-c1">
+                    <img th:src="@{/images/Logos/Logo PNG.png}" alt="" width="50px">
+                    <h2 class="form_title title">Identifiants</h2>
+                    <div class="pss">
+                        <input class="form__input" type="text" th:field="*{username}" placeholder="Pseudonyme*" required
+                            autofocus><br>
+                        <span th:class="has-error" th:errors="*{username}"></span>
+                    </div>
+
+                    <div>
+                        <input class="form__input" type="password" th:field="*{password}" placeholder="Mot de Passe*"
+                            required><br>
+                        <span th:class="has-error" th:errors="*{password}"></span>
+                    </div>
+                    <div>
+                        <input class="form__input" type="password" th:field="*{confirmPassword}"
+                            placeholder="Confirmer le Mot de Passe*" required><br>
+                        <span th:class="has-error" th:errors="*{confirmPassword}"></span>
+                        <p class="switch__description description">
+                            Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre, un
+                            caractère
+                            spécial et comporter au moins 8 caractères.
+                        </p>
+                    </div>
+                    <div>
+                        <a th:href="@{/}" class="form__link">Déjà inscrit ?</a>
+                    </div>
+                    <div>
+                        <button type="submit" name="ok" id="logIn"
+                            class="switch__button button switch-btn a-button">S'inscrire
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 
 </body>
+
 </html>

@@ -1,41 +1,62 @@
 version: "3.9"
 services:
+  #************************************************************doc
+  # mysqldb:
+  #   build:
+  #     context: ../baseDonnee
+  #     dockerfile: Dockerfile
+  #   container_name: mysqldb
+  #   hostname: mysqldb
+  #   restart: always
+  #   ports:
+  #     - "3308:3306"
+  #   #volumes:
+  #   # - mysql-data:/var/lib/mysql
+  #   networks:
+  #     app_net:
+  #       ipv4_address: "172.16.0.2"
+  #************************************************************doc
   mysqldb:
-    build:
-      context: ../baseDonnee
-      dockerfile: Dockerfile
-    container_name: mysqldb1
+    image: mysql:latest
+    container_name: mysqldb
     hostname: mysqldb
     restart: always
     ports:
       - "3308:3306"
+    environment:
+      MYSQL_DATABASE: 'pictopro'
+      MYSQL_USER: 'emma' # Il est recommandé d'utiliser un utilisateur autre que 'root' pour des raisons de sécurité.
+      MYSQL_PASSWORD: 'poseidon'
+      MYSQL_ROOT_PASSWORD: 'root' # Définissez ici le mot de passe root
     #volumes:
-     # - mysql-data:/var/lib/mysql
+    # - mysql-data:/var/lib/mysql
     networks:
       app_net:
         ipv4_address: "172.16.0.2"
-  pictopro1:
+  #************************************************************
+  pictopro:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: pictopro1
-    hostname: pictopro1
+    container_name: pictopro
+    hostname: pictopro
     restart: always
     ports:
-      - "8082:8080"
+      - "80:8080"
     depends_on:
       - mysqldb
     networks:
       app_net:
         ipv4_address: 172.16.0.3
     extra_hosts:
-      - "mysqldb:172.16.0.2" 
-mailhog:
-    image: mailhog/mailhog
-    ports:
-      - "1025:1025"  # SMTP server
-      - "8025:8025"  # Web interface
-      
+      - "mysqldb:172.16.0.2"
+  #************************************************************
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "1025:1025" # SMTP server
+  #     - "8025:8025" # Web interface
+
 networks:
   app_net:
     ipam:
@@ -45,13 +66,14 @@ networks:
 volumes:
   my-db:
 
-#lancer le docker compose
-#docker compose up
-#log
-#docker inspect --format "{{json .State.Health }}" customers-service | jq
-#supprimer docker compose
-#docker compose rm
-#supprimer toutes les images
-#docker rmi $(docker images -a -q) -f
-#arrêter les container
-#docker rm $(docker images -a -q) -f
+    #lancer le docker compose
+    #docker compose up
+    #log
+    #docker inspect --format "{{json .State.Health }}" customers-service | jq
+    #supprimer docker compose
+    #docker compose rm
+    #supprimer toutes les images
+    #docker rmi $(docker images -a -q) -f
+    #arrêter les container
+    #docker rm $(docker images -a -q) -f
+    #docker-compose up --build

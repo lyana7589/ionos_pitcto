@@ -11,13 +11,13 @@
     </parent>
     <groupId>com.ecam.picto</groupId>
     <artifactId>pictopro</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.6-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>pictopro</name>
     <description>Destinée aux professionnels de santé</description>
     <properties>
-        <java.version>19</java.version>
-<!--        <java.version>17</java.version>-->
+        <!-- <java.version>19</java.version> -->
+       <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -73,6 +73,18 @@
             <artifactId>jakarta.mail-api</artifactId>
             <version>2.0.1</version>
         </dependency>
+        
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+
+
+
+
+
         <dependency>
             <groupId>net.bytebuddy</groupId>
             <artifactId>byte-buddy</artifactId>

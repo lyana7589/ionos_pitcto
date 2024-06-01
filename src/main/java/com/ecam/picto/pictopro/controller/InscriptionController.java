@@ -57,7 +57,9 @@ public class InscriptionController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") Professionnel userForm, BindingResult bindingResult, HttpServletRequest request, @RequestParam(name="g-recaptcha-response") String captchaResponse) throws RuntimeException {
+    public String registration(@ModelAttribute("userForm") Professionnel userForm, BindingResult bindingResult,
+            HttpServletRequest request, @RequestParam(name = "g-recaptcha-response") String captchaResponse)
+            throws RuntimeException {
         try {
             userValidator.validate(userForm, bindingResult);
 
@@ -65,9 +67,12 @@ public class InscriptionController {
                 return "inscription";
             }
             String url = "https://www.google.com/recaptcha/api/siteverify";
-            String params = "?secret=6LerQO0mAAAAADP0x9YCHpENyrlbf2ji9KF8O6yy&response="+captchaResponse;
-            ReCaptchaResponse reCaptchaResponse = restTemplate.exchange(url+params, HttpMethod.POST, null, ReCaptchaResponse.class).getBody();
-            if(reCaptchaResponse.isSuccess()){
+            // String params =
+            // "?secret=6LerQO0mAAAAADP0x9YCHpENyrlbf2ji9KF8O6yy&response="+captchaResponse;
+            String params = "?secret=6LdDIe0pAAAAAMoR-OZmATih6yPXmsZZ6tPiQ6oI&response=" + captchaResponse;
+            ReCaptchaResponse reCaptchaResponse = restTemplate
+                    .exchange(url + params, HttpMethod.POST, null, ReCaptchaResponse.class).getBody();
+            if (reCaptchaResponse.isSuccess()) {
 
                 // On génère un token de vérification
                 String token = verificationTokenService.generateToken();
@@ -124,5 +129,3 @@ public class InscriptionController {
         return "inscriptionEchec";
     }
 }
-
-
